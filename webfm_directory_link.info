@@ -1,0 +1,7 @@
+; $Id$
+name = Web File Manager Directory Link
+description = A webfm plugin module that provides a way of linking to specific directories
+package = WebFM
+core = 6.x
+dependencies[] = webfm
+

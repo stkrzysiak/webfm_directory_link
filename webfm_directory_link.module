@@ -1,0 +1,38 @@
+<?php
+/**
+ * @file
+ * This is a module to 'rewrite' folder links using webfm_custom_layout
+ * 
+ */
+
+/**
+ * Implementation of hook_menu().
+ */
+function webfm_directory_link_menu() {
+  $items = array();
+
+  $items['documents/%subdirectory'] = array(
+    'title' => t('Document Library'),
+    'page arguments' =>arg(1),
+    'page callback' => 'webfm_directory_link_post_dir',
+    'access arguments' => array(1),
+    'access callback' => 'user_access',
+    'access arguments' => array('access webfm'),
+    'type' => MENU_LOCAL_TASK,
+    'load arguments' => array('%map'),
+  );
+  return $items;
+  }
+
+function subfolder_load($subchapter) {
+  return $subchapter;
+  }
+
+
+
+function webfm_directory_link_post_dir($map)  {
+  return webfm_custom_layout($path = "/$map", $displayTree = TRUE, $displayDir = TRUE, $breadcrumbRoot = NULL, $displayColumns = NULL);
+  }
+
+
+
